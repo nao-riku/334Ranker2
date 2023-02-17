@@ -47,7 +47,8 @@ def login_twitter(account, password, tel, driver):
 
             
 def make_ranking(dict, driver):
-    time1 = datetime.datetime(start_now.year, start_now.month, start_now.day, 3, 34, 0)
+    now = datetime.datetime.now()
+    time1 = datetime.datetime(now.year, now.month, now.day, 3, 34, 0)
     winner = ""
     users = []
     dict2 = []
