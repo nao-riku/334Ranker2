@@ -196,8 +196,8 @@ def start():
         else:
             break
 
-        login_twitter(os.environ['NAME'], os.environ['PASS'], os.environ['TEL'], driver)
-        get_334(driver)
+    login_twitter(os.environ['NAME'], os.environ['PASS'], os.environ['TEL'], driver)
+    get_334(driver)
          
 start()
             
