@@ -81,9 +81,10 @@ def make_ranking(dict, driver):
     
 
 def get_334(driver):
-    time1 = datetime.datetime(start_now.year, start_now.month, start_now.day, 3, 33, 59)
-    time2 = datetime.datetime(start_now.year, start_now.month, start_now.day, 3, 34, 2)
-    get_time = datetime.datetime(start_now.year, start_now.month, start_now.day, 3, 34, 3)
+    now = datetime.datetime.now()
+    time1 = datetime.datetime(now.year, now.month, now.day, 3, 33, 59)
+    time2 = datetime.datetime(now.year, now.month, now.day, 3, 34, 2)
+    get_time = datetime.datetime(now.year, now.month, now.day, 3, 34, 3)
     while True:
         if get_time < datetime.datetime.now():
             driver.execute_script("""
