@@ -1,0 +1,37 @@
+name: 334Ranker
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+          
+      - name: Install Package
+        id: set
+        continue-on-error: true
+        run: |
+          sudo languagesetup -langspec ja
+          sudo systemsetup -settimezone Asia/Tokyo
+          pip install chromedriver-binary-auto
+          pip install selenium-wire
+          pip install selenium
+          
+
+      - name: Run Python
+        env:
+          NAME: ${{ secrets.NAME }}
+          PASS: ${{ secrets.PASS }}
+          TEL: ${{ secrets.TEL }}
+          TZ: "Asia/Tokyo"
+        run: python main.py
