@@ -45,6 +45,11 @@ def login_twitter(account, password, tel, driver):
             break
 
 
+def TweetIdTime(id):
+    epoch = ((id >> 22) + 1288834974657) / 1000.0
+    d = datetime.datetime.fromtimestamp(epoch)
+    return d
+
             
 def make_ranking(dict, driver):
     now = datetime.datetime.now()
