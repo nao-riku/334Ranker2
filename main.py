@@ -107,7 +107,6 @@ def get_334(driver):
     get_time = datetime.datetime(now.year, now.month, now.day, 3, 34, 3)
     while True:
         if get_time < datetime.datetime.now():
-            timeline
             driver.execute_script("""
 window.data = "";
 var url1 = 'https://api.twitter.com/1.1/search/';
