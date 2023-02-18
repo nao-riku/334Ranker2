@@ -9,6 +9,7 @@ import time
 import datetime
 import json
 import os
+import traceback
 
 timeline_body = {}
 
@@ -57,8 +58,7 @@ def login_twitter(account, password, tel, driver):
                 time.sleep(0.5)
         
         except Exception as e:
-            print(e)
-            print(e.args)
+            traceback.print_exc()
         else:
             break
 
@@ -274,8 +274,7 @@ def start():
             driver = webdriver.Chrome(options = options)
             
         except Exception as e:
-            print(e)
-            print(e.args)
+            traceback.print_exc()
         else:
             break
 
