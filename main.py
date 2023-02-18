@@ -14,6 +14,7 @@ import traceback
 timeline_body = {}
 
 def login_twitter(account, password, tel, driver):
+    global timeline_body
     for _ in range(3):
         try:
             driver.get('https://twitter.com/i/flow/login')
@@ -46,13 +47,23 @@ def login_twitter(account, password, tel, driver):
             for _ in range(5):
                 for request in driver.requests:
                     if request.response:
-                        if "Timeline" in request.url:
-                            timeline_body2 = json.loads(request.body)
-                            time.sleep(0.5)
-                            if "variables" in timeline_body2:
-                                timeline_body = timeline_body2
-                                print("set timeline_body")
-                                break
+                        if "Timeline" in request.url and "graphql" in request.url:
+                            if request.body != b'':
+                                timeline_body2 = json.loads(request.body)
+                                time.sleep(0.5)
+                                if "variables" in timeline_body2:
+                                    timeline_body = timeline_body2
+                                    print("set timeline_body")
+                                    break
+                            else:
+                                timeline_body2 = request.params
+                                time.sleep(0.5)
+                                if "variables" in timeline_body2:
+                                    timeline_body = timeline_body2
+                                    timeline_body["variables"] = json.loads(timeline_body["variables"])
+                                    timeline_body["features"] = json.loads(timeline_body["features"])
+                                    print("set timeline_body")
+                                    break
                 if timeline_body != {}:
                     break
                 time.sleep(0.5)
