@@ -142,7 +142,6 @@ time1.setMilliseconds(0);
 var data = arguments[0];
 data.variables["cursor"] = "";
 data.variables.seenTweetIds = [];
-data.queryId = "pI4BELZIWSJdQdWRrkKs6g";
 get_tweets();
 function setheader(xhr) {
     xhr.setRequestHeader('Authorization', 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA');
