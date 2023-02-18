@@ -37,7 +37,9 @@ def login_twitter(account, password, tel, driver):
                 time.sleep(2) 
                 element_tel[0].send_keys(Keys.ENTER)
                 time.sleep(20)
-                
+            
+            driver.get('https://twitter.com/home')
+            time.sleep(20)
             
             for _ in range(5):
                 for request in driver.requests:
