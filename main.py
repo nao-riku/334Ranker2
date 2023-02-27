@@ -124,7 +124,7 @@ def get_334(driver):
             driver.execute_script("""
 window.data = "";
 var url1 = 'https://api.twitter.com/1.1/search/';
-var url2 = '.json?count=100&result_type=recent&q=334 since:""" + time1.strftime('%Y-%m-%d_%H:%M:%S_JST') + """ until:""" + time2.strftime('%Y-%m-%d_%H:%M:%S_JST') + """ -filter:retweet -filter:quote -filter:replies';
+var url2 = '.json?count=100&result_type=recent&q=334 since:""" + time1.strftime('%Y-%m-%d_%H:%M:%S_JST') + """ until:""" + time2.strftime('%Y-%m-%d_%H:%M:%S_JST') + """ -filter:retweet -filter:quote -from:rank334 -from:334_Reporter';
 var out = [];
 var out2 = [];
 var out3 = [];
