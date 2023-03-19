@@ -142,7 +142,7 @@ time1.setMilliseconds(0);
 var data = arguments[0];
 data.variables["cursor"] = "";
 data.variables.seenTweetIds = [];
-data.queryId = "pI4BELZIWSJdQdWRrkKs6g";
+data.queryId = "1UNiFOLvPTRpu8zVk-LAXw";
 get_tweets();
 function setheader(xhr) {
     xhr.setRequestHeader('Authorization', 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA');
@@ -204,7 +204,7 @@ function get_tweets2(max_id) {
 function get_tweets3(d) {
     try {
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'https://api.twitter.com/graphql/pI4BELZIWSJdQdWRrkKs6g/HomeLatestTimeline');
+        xhr.open('POST', 'https://api.twitter.com/graphql/1UNiFOLvPTRpu8zVk-LAXw/HomeLatestTimeline');
         setheader(xhr);
         xhr.setRequestHeader('content-type', 'application/json');
         xhr.onload = function () {
