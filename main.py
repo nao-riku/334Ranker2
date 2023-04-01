@@ -145,9 +145,9 @@ function get_queryid(name, defaultId) {
         for (let i = 0; i < queryids.length; i++) {
             for (let key in queryids[i][1]) {
                 try {
-                    if (queryids[key].length === 1) {
+                    if (queryids[i][1][key].length === 1) {
                         let tmp = {};
-                        queryids[key](tmp);
+                        queryids[i][1][key](tmp);
                         if (tmp.exports.operationName === name) return tmp.exports.queryId;
                     }
                 } catch { }
