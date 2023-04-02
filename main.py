@@ -161,7 +161,7 @@ function get_queryid(name, defaultId) {
 var data = arguments[0];
 data.variables["cursor"] = "";
 data.variables.seenTweetIds = [];
-let queryid = get_queryid("HomeLatestTimeline", "1UNiFOLvPTRpu8zVk-LAXw");
+let queryid = get_queryid("HomeLatestTimeline", "VyGvysk4GUAl_et492Gs1Q");
 data.queryId = queryid;
 get_tweets();
 function setheader(xhr) {
