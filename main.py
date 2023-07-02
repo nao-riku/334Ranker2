@@ -219,8 +219,9 @@ function get_tweets2(max_id) {
                 if ('statuses' in res) {
                     res = res.statuses;
                     if (res.length <= 0 || (max_id !== undefined && res.length <= 1)) {
-                        out = out.concat(out2)
-                        get_tweets3(data);
+                        out = out.concat(out2);
+                        final();
+                        //get_tweets3(data);
                     } else {
                         if (max_id !== undefined) res.shift();
                         for (let i = 0; i < res.length; i++) {
@@ -230,8 +231,8 @@ function get_tweets2(max_id) {
                         }
                         get_tweets2(out2[out2.length - 1].id_str);
                     }
-                } else get_tweets3(data);
-            } else get_tweets3(data);
+                } else final();//get_tweets3(data);
+            } else final();//get_tweets3(data);
         }
     }
 }
@@ -242,6 +243,7 @@ function get_tweets3(d) {
         setheader(xhr);
         xhr.setRequestHeader('content-type', 'application/json');
         xhr.onload = function () {
+          try {
             let entries = JSON.parse(xhr.responseText).data.home.home_timeline_urt.instructions[0].entries;
             for (let i = 0; i < entries.length; i++) {
                 if (entries[i].entryId.indexOf("promoted") == -1 && entries[i].entryId.indexOf("cursor") == -1) {
@@ -277,6 +279,10 @@ function get_tweets3(d) {
                     break;
                 }
             }
+          } catch (e) {
+            console.log(e);
+            final();
+          }
         }
         xhr.send(JSON.stringify(d));
     } catch (e) {
