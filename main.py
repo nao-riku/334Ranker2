@@ -191,6 +191,7 @@ function get_tweets(max_id) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
+              try {
                 res = JSON.parse(xhr.responseText).modules;
                 if (res.length <= 0 || (max_id !== undefined && res.length <= 1)) get_tweets2();
                 else {
@@ -202,6 +203,10 @@ function get_tweets(max_id) {
                     }
                     get_tweets(out[out.length - 1].id_str);
                 }
+              } catch (e) {
+                console.log(e);
+                get_tweets2();
+              }
             } else get_tweets2();
         }
     }
@@ -215,6 +220,7 @@ function get_tweets2(max_id) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
+              try {
                 res = JSON.parse(xhr.responseText);
                 if ('statuses' in res) {
                     res = res.statuses;
@@ -232,6 +238,10 @@ function get_tweets2(max_id) {
                         get_tweets2(out2[out2.length - 1].id_str);
                     }
                 } else final();//get_tweets3(data);
+              } catch (e) {
+                console.log(e);
+                final();
+              }
             } else final();//get_tweets3(data);
         }
     }
