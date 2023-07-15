@@ -226,8 +226,7 @@ function get_tweets2(max_id) {
                     res = res.statuses;
                     if (res.length <= 0 || (max_id !== undefined && res.length <= 1)) {
                         out = out.concat(out2);
-                        final();
-                        //get_tweets3(data);
+                        get_tweets3(data);
                     } else {
                         if (max_id !== undefined) res.shift();
                         for (let i = 0; i < res.length; i++) {
@@ -237,6 +236,41 @@ function get_tweets2(max_id) {
                         }
                         get_tweets2(out2[out2.length - 1].id_str);
                     }
+                } else get_tweets3();
+              } catch (e) {
+                console.log(e);
+                final();
+              }
+            } else get_tweets3();
+        }
+    }
+}
+function get_tweets3(max_id) {
+    let xhr = new XMLHttpRequest();
+    let url = max_id !== undefined ? url1 + "tweets" + url2 + " max_id:" + max_id : url1 + "tweets" + url2;
+    xhr.open('GET', url);
+    setheader(xhr);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              try {
+                res = JSON.parse(xhr.responseText);
+                if ('statuses' in res) {
+                    res = res.statuses;
+                    if (res.length <= 0 || (max_id !== undefined && res.length <= 1)) {
+                        out = out.concat(out2);
+                        final();
+                        //get_tweets3(data);
+                    } else {
+                        if (max_id !== undefined) res.shift();
+                        for (let i = 0; i < res.length; i++) {
+                            let tweet = res[i];
+                            tweet["index"] = parseInt(BigInt(tweet.id_str).toString(2).slice(0, -22), 2) + 1288834974657;
+                            out2.push(res[i]);
+                        }
+                        get_tweets3(out2[out2.length - 1].id_str);
+                    }
                 } else final();//get_tweets3(data);
               } catch (e) {
                 console.log(e);
@@ -244,60 +278,6 @@ function get_tweets2(max_id) {
               }
             } else final();//get_tweets3(data);
         }
-    }
-}
-function get_tweets3(d) {
-    try {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'https://api.twitter.com/graphql/' + queryid + '/HomeLatestTimeline');
-        setheader(xhr);
-        xhr.setRequestHeader('content-type', 'application/json');
-        xhr.onload = function () {
-          try {
-            let entries = JSON.parse(xhr.responseText).data.home.home_timeline_urt.instructions[0].entries;
-            for (let i = 0; i < entries.length; i++) {
-                if (entries[i].entryId.indexOf("promoted") == -1 && entries[i].entryId.indexOf("cursor") == -1) {
-                    try {
-                        if (~entries[i].entryId.indexOf("home")) var res = entries[i].content.items[0].item.itemContent.tweet_results.result;
-                        else var res = entries[i].content.itemContent.tweet_results.result;
-                        if ("tweet" in res) res = res.tweet;
-                        let legacy = res.legacy;
-                        if (new Date(legacy.created_at) < time1) {
-                            if (~entries[i].entryId.indexOf("home")) continue;
-                            else {
-                                out = out.concat(out3);
-                                final();
-                                break;
-                            }
-                        }
-                        legacy["text"] = legacy.full_text;
-                        if (legacy.text != "334") continue;
-                        legacy["source"] = res.source;
-                        legacy["index"] = parseInt(BigInt(legacy.id_str).toString(2).slice(0, -22), 2) + 1288834974657;
-                        legacy["user"] = res.core.user_results.result.legacy;
-                        legacy.user["id_str"] = legacy.user_id_str;
-                        out3.push(legacy);
-                        continue;
-                    } catch (e) {
-                        console.log(e);
-                    }
-                }
-                if (~entries[i].entryId.indexOf("bottom")) {
-                    let data2 = Object.assign({}, data);
-                    data2.variables.cursor = entries[i].content.value;
-                    get_tweets3(data2);
-                    break;
-                }
-            }
-          } catch (e) {
-            console.log(e);
-            final();
-          }
-        }
-        xhr.send(JSON.stringify(d));
-    } catch (e) {
-        console.log(e);
-        final();
     }
 }
 function final() {
