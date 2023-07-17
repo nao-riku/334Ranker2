@@ -163,7 +163,7 @@ def get_334(driver):
             driver.execute_script("""
 window.data = "";
 var url1 = 'https://api.twitter.com/1.1/search/';
-var url2 = '.json?count=100&result_type=recent&q=334 since:""" + time1.strftime('%Y-%m-%d_%H:%M:%S_JST') + """ until:""" + time2.strftime('%Y-%m-%d_%H:%M:%S_JST') + """ -filter:retweets -filter:quote -from:rank334 -from:334_Reporter';
+var url2 = '.json?count=100&result_type=recent&q=334 since:""" + time1.strftime('%Y-%m-%d_%H:%M:%S_JST') + """ until:""" + time2.strftime('%Y-%m-%d_%H:%M:%S_JST') + """ -filter:retweets -filter:quote -from:rank334 -from:rank334_2';
 var out = [];
 var out2 = [];
 var out3 = [];
@@ -207,7 +207,7 @@ let queryid = get_queryid("HomeLatestTimeline", "02vsYHq98uLTwnNu2VF0Lg");
 data.queryId = queryid;
 var data2 = arguments[1];
 data2.variables["cursor"] = "";
-data2.variables["rawQuery"] = "334 since:""" + time1.strftime('%Y-%m-%d_%H:%M:%S_JST') + """ until:""" + time2.strftime('%Y-%m-%d_%H:%M:%S_JST') + """"
+data2.variables["rawQuery"] = "334 -filter:retweets -filter:quote -from:rank334 -from:rank334_2 since:""" + time1.strftime('%Y-%m-%d_%H:%M:%S_JST') + """ until:""" + time2.strftime('%Y-%m-%d_%H:%M:%S_JST') + """"
 let queryid2 = get_queryid("SearchTimeline", "KUnA_SzQ4DMxcwWuYZh9qg");
 get_tweets();
 
