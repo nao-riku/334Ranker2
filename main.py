@@ -365,14 +365,15 @@ function get_tweets4(d) {
                     try {
                         var flag = true;
                         let instructions = JSON.parse(xhr.responseText).data.search_by_raw_query.search_timeline.timeline.instructions;
-                        for (let j = 0; j < instructions.length; j++) {
+                        loop: for (let j = 0; j < instructions.length; j++) {
                             if ("entries" in instructions[j]) var entries = instructions[j].entries;
-                            else if ("entry" in instructions[j]) var entries = instructions[j].entry;
+                            else if ("entry" in instructions[j]) var entries = [instructions[j].entry];
                             else continue;
                             for (let i = 0; i < entries.length; i++) {
                                 if (!entries[i].entryId.includes("promoted") && !entries[i].entryId.includes("cursor")) {
                                     try {
                                         var res = entries[i].content.itemContent.tweet_results.result;
+                                        if ("tweet" in res) res = res.tweet;
                                         let legacy = res.legacy;
                                         if (new Date(legacy.created_at) < time1) {
                                             if (entries[i].entryId.includes("home")) continue;
@@ -380,7 +381,7 @@ function get_tweets4(d) {
                                                 out = out.concat(out4);
                                                 flag = false;
                                                 final();
-                                                break;
+                                                break loop;
                                             }
                                         }
                                         legacy["text"] = legacy.full_text;
@@ -400,7 +401,7 @@ function get_tweets4(d) {
                                     data3.variables.cursor = entries[i].content.value;
                                     flag = false;
                                     get_tweets4(data3);
-                                    break;
+                                    break loop;
                                 }
                             }
                         }
