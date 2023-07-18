@@ -30,7 +30,6 @@ jobs:
 
       - name: Run Python
         env:
-          NAME: ${{ secrets.NAME }}
           PASS: ${{ secrets.PASS }}
           TEL: ${{ secrets.TEL }}
           TZ: "Asia/Tokyo"
