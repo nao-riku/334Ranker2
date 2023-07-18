@@ -468,7 +468,7 @@ def start():
         else:
             break
 
-    login_twitter(os.environ['NAME'], os.environ['PASS'], os.environ['TEL'], driver)
+    login_twitter("rank334_2", os.environ['PASS'], os.environ['TEL'], driver)
     get_334(driver)
          
 start()
