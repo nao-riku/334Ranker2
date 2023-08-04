@@ -23,7 +23,7 @@ jobs:
         run: |
           sudo languagesetup -langspec ja
           sudo systemsetup -settimezone Asia/Tokyo
-          pip install chromedriver-binary-auto==0.2.6
+          pip install chromedriver-binary-auto
           pip install selenium-wire
           pip install selenium
           
