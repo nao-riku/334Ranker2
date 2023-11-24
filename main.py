@@ -447,6 +447,7 @@ function final(out6) {
                 res = driver.execute_script("return window.data")
                 if res != "":
                     make_ranking(res, driver)
+                    print(res)
                     break
             break
         time.sleep(0.01)
