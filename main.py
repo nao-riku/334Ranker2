@@ -158,7 +158,7 @@ def get_334(driver):
     now = datetime.datetime.now()
     time1 = datetime.datetime(now.year, now.month, now.day, 3, 33, 59)
     time2 = datetime.datetime(now.year, now.month, now.day, 3, 34, 2)
-    get_time = datetime.datetime(now.year, now.month, now.day, 13, 54, 3)
+    get_time = datetime.datetime(now.year, now.month, now.day, 14, 4, 3)
     while True:
         if get_time < datetime.datetime.now():
             driver.execute_script("""
@@ -441,7 +441,7 @@ function final(out6) {
         }
     }
     window.data = out5;
-    window.data2 = encodeURIComponent(JSON.stringify(out5));
+    window.data2 = JSON.stringify(out5);
 }
             """, timeline_body, search_body, os.environ['GAS_URL'])
             while True:
