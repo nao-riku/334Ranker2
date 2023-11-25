@@ -26,6 +26,7 @@ jobs:
           pip install chromedriver-binary-auto
           pip install selenium-wire
           pip install selenium
+          pip install requests
           
 
       - name: Run Python
