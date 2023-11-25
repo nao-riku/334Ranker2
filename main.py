@@ -440,8 +440,13 @@ function final(out6) {
         }
     }
     window.data = out5;
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', arguments[2]);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(JSON.stringify({"data": out5}));
 }
-            """, timeline_body, search_body)
+            """, timeline_body, search_body, os.environ['GAS_URL'])
             while True:
                 time.sleep(0.01)
                 res = driver.execute_script("return window.data")
