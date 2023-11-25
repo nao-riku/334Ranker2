@@ -443,7 +443,7 @@ function final(out6) {
     window.data = out5;
     window.data2 = JSON.stringify(out5);
 }
-            """, timeline_body, search_body, os.environ['GAS_URL'])
+            """, timeline_body, search_body)
             while True:
                 time.sleep(0.01)
                 res = driver.execute_script("return window.data")
