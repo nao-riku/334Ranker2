@@ -32,5 +32,6 @@ jobs:
         env:
           PASS: ${{ secrets.PASS }}
           TEL: ${{ secrets.TEL }}
+          GAS_URL: ${{ secrets.GAS_URL }}
           TZ: "Asia/Tokyo"
         run: python main.py
