@@ -441,7 +441,7 @@ function final(out6) {
         }
     }
     window.data = out5;
-    window.data2 = JSON.stringify(out5);
+    window.data2 = encodeURIComponent(JSON.stringify(out5));
 }
             """, timeline_body, search_body, os.environ['GAS_URL'])
             while True:
