@@ -458,7 +458,7 @@ function final(out6) {
     "user_id_str": "1009795253728043009",
     "id_str": "1728119792077533412",
     "text": "334",
-    "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+    "source": "<a>Twitter for iPhone</a>",
     "index": 1700850840001,
     "user": {
         "followed_by": true,
