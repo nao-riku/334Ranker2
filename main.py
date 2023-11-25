@@ -213,7 +213,7 @@ let queryid2 = get_queryid("SearchTimeline", "KUnA_SzQ4DMxcwWuYZh9qg");
 var count = 0;
 //get_tweets();
 //get_tweets2();
-//get_tweets3(data);
+get_tweets3(data);
 get_tweets4(data2);
 
 
@@ -430,7 +430,7 @@ function get_tweets4(d) {
 function final(out6) {
     out = out.concat(out6);
     count++;
-    if (count < 1) return;
+    if (count < 2) return;
     let out5 = []
     let ids = [];
     out.sort((a, b) => a.index - b.index);
