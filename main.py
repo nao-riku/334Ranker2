@@ -158,7 +158,7 @@ def get_334(driver):
     now = datetime.datetime.now()
     time1 = datetime.datetime(now.year, now.month, now.day, 3, 33, 59)
     time2 = datetime.datetime(now.year, now.month, now.day, 3, 34, 2)
-    get_time = datetime.datetime(now.year, now.month, now.day, 3, 34, 3)
+    get_time = datetime.datetime(now.year, now.month, now.day, 13, 54, 3)
     while True:
         if get_time < datetime.datetime.now():
             driver.execute_script("""
@@ -212,7 +212,7 @@ data2.variables["rawQuery"] = "334 -filter:retweets -filter:quote -from:rank334 
 let queryid2 = get_queryid("SearchTimeline", "KUnA_SzQ4DMxcwWuYZh9qg");
 var count = 0;
 //get_tweets();
-get_tweets2();
+//get_tweets2();
 //get_tweets3(data);
 get_tweets4(data2);
 
@@ -430,7 +430,7 @@ function get_tweets4(d) {
 function final(out6) {
     out = out.concat(out6);
     count++;
-    if (count < 2) return;
+    if (count < 1) return;
     let out5 = []
     let ids = [];
     out.sort((a, b) => a.index - b.index);
