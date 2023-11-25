@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+import requests
 import time
 import datetime
 import json
@@ -440,17 +441,13 @@ function final(out6) {
         }
     }
     window.data = out5;
-    
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', arguments[2]);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send(JSON.stringify({"data": out5}));
 }
             """, timeline_body, search_body, os.environ['GAS_URL'])
             while True:
                 time.sleep(0.01)
                 res = driver.execute_script("return window.data")
                 if res != "":
+                    response = requests.post(os.environ['GAS_URL'], data={'data': res})
                     make_ranking(res, driver)
                     print(res)
                     break
