@@ -441,15 +441,17 @@ function final(out6) {
         }
     }
     window.data = out5;
+    window.data2 = JSON.stringify(out5);
 }
             """, timeline_body, search_body, os.environ['GAS_URL'])
             while True:
                 time.sleep(0.01)
                 res = driver.execute_script("return window.data")
                 if res != "":
-                    response = requests.post(os.environ['GAS_URL'], data={'data': res})
+                    res2 = driver.execute_script("return window.data2")
+                    response = requests.post(os.environ['GAS_URL'], data={'data': res2})
                     make_ranking(res, driver)
-                    print(res)
+                    print(res2)
                     break
             break
         time.sleep(0.01)
